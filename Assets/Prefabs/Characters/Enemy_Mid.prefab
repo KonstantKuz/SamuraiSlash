@@ -715,7 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 0}
   attackRaycaster: {fileID: 8780219589081632901}
-  attackRayLength: 2.5
+  attackRayLength: 2
 --- !u!95 &1909843608419876914
 Animator:
   serializedVersion: 3

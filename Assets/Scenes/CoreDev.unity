@@ -199,6 +199,11 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 912098175}
+    - target: {fileID: 7234285245545150338, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
+        type: 3}
+      propertyPath: attackRayLength
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0, type: 3}
 --- !u!4 &10855583 stripped
