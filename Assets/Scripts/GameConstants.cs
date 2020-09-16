@@ -5,4 +5,10 @@ using UnityEngine;
 public class GameConstants : MonoBehaviour
 {
     public const string PrefsCurrentLevel = "currentLevel";
+
+    public const string TagPlayer = "Player";
+    public const string TagPlayerSword = "PlayerSword";
+
+    public const float SlowMoDelayOnEnemyAttack = 0.1f;
+    public const float SlowMoDurationOnEnemyAttack = 5f;
 }

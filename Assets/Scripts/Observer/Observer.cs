@@ -18,6 +18,9 @@ public class Observer : Singleton<Observer>
     public Action OnLeftMouseButtonDown;
 
     private bool isLevelCompleted = false;
+    public Action<SlowMoData> OnEnableSlowMo = delegate { Debug.Log("OnEnableSlowMo triggered"); };
+    public Action OnSlowMoDisabled = delegate { Debug.Log("OnSlowMoDisabled triggered"); };
+
     public void CallOnWinLevel()
     {
         if (!isLevelCompleted)
