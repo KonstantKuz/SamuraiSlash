@@ -74,6 +74,7 @@
           <e p="EventTriggers.cs" t="Include" />
           <e p="GameConstants.cs" t="Include" />
           <e p="GameStarter.cs" t="Include" />
+          <e p="LevelEnemies.cs" t="Include" />
           <e p="LevelManager.cs" t="Include" />
           <e p="Observer" t="Include">
             <e p="Observer.cs" t="Include" />

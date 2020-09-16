@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Sword sword;
     [SerializeField] private float slowMoStartTimePercentage;
-    [SerializeField] private float slowMoDurationPercentage;
+    [SerializeField] private float slowMoDuration;
     
     private Animator animator;
     
@@ -20,16 +20,9 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(2f);
-        animator.SetTrigger(AnimatorHashes.Idle);
-    }
     
     private void Attack(SwipeData swipe)
     {
-        animator.SetTrigger(AnimatorHashes.Idle);
         switch (swipe.Direction)
         {
             case SwipeDirection.Up:
@@ -45,28 +38,22 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger(AnimatorHashes.AttackLR);
                 break;
         }
+        
+        sword.StartAttack();
 
         SlowMoData slowMoData = new SlowMoData();
         slowMoData.delay = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * slowMoStartTimePercentage;
-        slowMoData.duration = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * slowMoDurationPercentage;
+        slowMoData.duration = slowMoDuration;
         //slowMoData.animatorsSpeed = 0.1f;
         Observer.Instance.OnEnableSlowMo(slowMoData);
-        
-        sword.Attack();
     }
-    
-    // [SerializeField] private Transform sword;
-    //
-    // private void Update()
-    // {
-    //     Ray ray = new Ray(sword.position, sword.up);
-    //     if (Physics.Raycast(ray, out RaycastHit hit, 1f))
-    //     {
-    //         EnemyController enemyController = hit.transform.GetComponent<EnemyController>();
-    //         if (enemyController != null)
-    //         {
-    //             enemyController.Die();
-    //         }
-    //     }
-    // }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(GameConstants.TagFightStarter))
+        {
+            animator.SetTrigger(AnimatorHashes.Idle);
+            Observer.Instance.CallOnFightStarterTriggered();
+        }
+    }
 }

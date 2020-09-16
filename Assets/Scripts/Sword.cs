@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    [SerializeField] private Transform razorStart;
+    [SerializeField] private Transform[] razors;
     [SerializeField] private float razorLength;
     [SerializeField] private float razorHelpSphereRadius;
     
@@ -15,7 +15,7 @@ public class Sword : MonoBehaviour
         get { return isAttacking; }
     }
 
-    public void Attack()
+    public void StartAttack()
     {
         isAttacking = true;
     }
@@ -29,17 +29,22 @@ public class Sword : MonoBehaviour
     {
         if (!isAttacking)
             return;
-        
-        Ray ray = new Ray(razorStart.position, razorStart.up);
-        if (Physics.SphereCast(ray,razorHelpSphereRadius, out RaycastHit hit, razorLength))
-        {
-            IDamageable damageable = hit.transform.GetComponent<IDamageable>(); 
-            if (damageable != null)
-            {
-                Debug.Log($"sword has been attacked {hit.transform.name}");
 
-                damageable.TakeDamage();
-                StopAttack();
+        for (int i = 0; i < razors.Length; i++)
+        {
+            Ray ray = new Ray(razors[i].position, razors[i].up);
+            if (Physics.SphereCast(ray, razorHelpSphereRadius, out RaycastHit hit, razorLength))
+            {
+                IDamageable damageable = hit.transform.GetComponent<IDamageable>(); 
+                if (damageable != null)
+                {
+                    Debug.Log($"sword has been attacked {hit.transform.name}");
+
+                    damageable.TakeDamage();
+                    StopAttack();
+                    
+                    break;
+                }
             }
         }
     }
@@ -47,8 +52,11 @@ public class Sword : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(razorStart.position, razorStart.position + razorStart.up * razorLength);
-        Gizmos.DrawWireSphere(razorStart.position + razorStart.up * razorLength, razorHelpSphereRadius);
+        for (int i = 0; i < razors.Length; i++)
+        {
+            Gizmos.DrawLine(razors[i].position, razors[i].position + razors[i].up * razorLength);
+            Gizmos.DrawWireSphere(razors[i].position + razors[i].up * razorLength, razorHelpSphereRadius);
+        }
     }
 }
 

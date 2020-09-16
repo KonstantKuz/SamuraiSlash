@@ -7,7 +7,6 @@ public struct SlowMoData
 {
     public float delay;
     public float duration;
-    //public float animatorsSpeed;
 }
 
 public class SlowMoController : MonoBehaviour
@@ -25,12 +24,14 @@ public class SlowMoController : MonoBehaviour
 
     private void EnableSlowMo(SlowMoData data)
     {
+        DisableSlowMo();
         StartCoroutine(HandleSlowMo());
         IEnumerator HandleSlowMo()
         {
             yield return new WaitForSeconds(data.delay);
-            playerAnimator.speed = playerAnimatorSpeedOnSlowMo;
-            enemyAnimator.speed = enemyAnimatorSpeedOnSlowMo;
+            Time.timeScale = 0.05f;
+            //playerAnimator.speed = playerAnimatorSpeedOnSlowMo;
+            //enemyAnimator.speed = enemyAnimatorSpeedOnSlowMo;
             yield return new WaitForSeconds(data.duration);
             DisableSlowMo();
         }
@@ -38,8 +39,9 @@ public class SlowMoController : MonoBehaviour
 
     private void DisableSlowMo()
     {
-        playerAnimator.speed = 1;
-        enemyAnimator.speed = 1;
+        Time.timeScale = 1f;
+        //playerAnimator.speed = 1;
+        //enemyAnimator.speed = 1;
         Observer.Instance.OnSlowMoDisabled();
     }
 }

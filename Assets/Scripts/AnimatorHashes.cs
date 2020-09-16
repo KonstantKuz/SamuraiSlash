@@ -9,7 +9,8 @@ public class AnimatorHashes : MonoBehaviour
     public static int AttackRL;
     public static int AttackTD;
     public static int AttackDT;
-    
+
+    public static int Motion;
     public static int Attack;
     public static int Die;
 
@@ -21,6 +22,7 @@ public class AnimatorHashes : MonoBehaviour
         AttackTD = Animator.StringToHash("AttackTD");
         AttackDT = Animator.StringToHash("AttackDT");
 
+        Motion = Animator.StringToHash("Motion");
         Attack = Animator.StringToHash("Attack");
         Die = Animator.StringToHash("Die");
     }
