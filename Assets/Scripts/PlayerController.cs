@@ -1,32 +1,52 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Dreamteck.Splines;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private FightCheckPoint[] checkPoints;
+    
     [SerializeField] private AttackType attackType;
     [SerializeField] private Sword sword;
+    [Tooltip("это ПРОЦЕНТНОЕ соотношение точки старта слоумо относительно анимации удара" +
+             "то есть если значение равно 0.2 то слоумо включится почти сразу в начале анимации удара" +
+             "если равно 0.8 - слоумо включится почти в конце анимации удара" +
+             "сделано так потому что одна анимация удара может длится дольше чем другая" +
+             "и тогда слоумо будет включаться либо уже после фактического удара по врагу" +
+             "либо перед ударом")]
     [SerializeField] private float slowMoStartTimePercentage;
     [SerializeField] private float slowMoDuration;
     
     private Animator animator;
     private EnemyController currentEnemy;
+
+    private Transform currentAimTarget;
+    private int currentCheckPointIndex;
     
-    private void OnEnable()
-    {
-        Observer.Instance.OnNextEnemyPushed += SetCurrentEnemy;
-        SwipeDetector.OnSwipe += Attack;
-    }
-
-    private void SetCurrentEnemy(EnemyController enemy)
-    {
-        currentEnemy = enemy;
-    }
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+    
+    private void OnEnable()
+    {
+        Observer.Instance.OnNextEnemyPushed += SetCurrentTarget;
+        Observer.Instance.OnCheckPointPassed += Go;
+        Observer.Instance.OnCheckPointPassed += ClearCurrentEnemy;
+        SwipeDetector.OnSwipe += Attack;
+    }
+
+    private void SetCurrentTarget(EnemyController enemy)
+    {
+        currentEnemy = enemy;
+        currentAimTarget = enemy.transform;
+    }
+
+    private void ClearCurrentEnemy()
+    {
+        currentEnemy = null;
     }
     
     private void Attack(SwipeData swipe)
@@ -63,23 +83,44 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameConstants.TagFightStarter))
+        if (other.CompareTag(GameConstants.TagFightCheckPoint))
         {
-            animator.SetTrigger(AnimatorHashes.Idle);
-            Observer.Instance.CallOnFightStarterTriggered();
+            UpdateCheckPointIndex();
+            Stop();
         }
+    }
+
+    private void UpdateCheckPointIndex()
+    {
+        currentCheckPointIndex++;
+    }
+
+    private void Stop()
+    {
+        animator.SetTrigger(AnimatorHashes.Idle);
+    }
+
+    private void Go()
+    {
+        if (currentCheckPointIndex >= checkPoints.Length)
+        {
+            Debug.Log("all check points passed");
+            return;
+        }
+        currentAimTarget = checkPoints[currentCheckPointIndex].transform;
+        animator.SetTrigger(AnimatorHashes.Run);
     }
 
     private void Update()
     {
-        AimToCurrentEnemy();
+        AimToCurrentTarget();
     }
     
-    private void AimToCurrentEnemy()
+    private void AimToCurrentTarget()
     {
-        if (currentEnemy)
+        if (currentAimTarget)
         {
-            Vector3 targetDirection = currentEnemy.transform.position - transform.position;
+            Vector3 targetDirection = currentAimTarget.position - transform.position;
             Vector3 targetDirectionXZ = Vector3.ProjectOnPlane(targetDirection, transform.up);
             Quaternion lookRotationAboutYAxis = Quaternion.LookRotation(targetDirectionXZ);
             transform.rotation = Quaternion.Lerp(transform.rotation, lookRotationAboutYAxis, Time.deltaTime * 5f);

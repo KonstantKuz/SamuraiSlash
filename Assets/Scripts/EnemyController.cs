@@ -15,12 +15,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Transform currentAimTarget;
     private PlayerController playerController;
 
-    private void OnEnable()
-    {
-        Observer.Instance.OnFightStarterTriggered += GoToStartPoint;
-    }
-
-    private void GoToStartPoint()
+    public void GoToStartPoint()
     {
         animator.SetFloat(AnimatorHashes.Motion, 1f);
         currentAimTarget = startPoint;

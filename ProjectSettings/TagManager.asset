@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerSword
-  - FightStarter
+  - FightCheckPoint
   layers:
   - Default
   - TransparentFX

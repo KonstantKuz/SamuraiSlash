@@ -876,10 +876,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6082a517bdd3c9946b34946ba13c6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPoints: []
   attackType: 0
   sword: {fileID: 702723906371166643}
-  slowMoStartTimePercentage: 0.5
-  slowMoDuration: 0.1
+  slowMoStartTimePercentage: 0.4
+  slowMoDuration: 0.05
 --- !u!95 &702723906238815452
 Animator:
   serializedVersion: 3

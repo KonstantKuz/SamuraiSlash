@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimatorHashes : MonoBehaviour
 {
+    public static int Run;
     public static int Idle;
     public static int AttackRight;
     public static int AttackLeft;
@@ -19,6 +20,7 @@ public class AnimatorHashes : MonoBehaviour
 
     private void OnEnable()
     {
+        Run = Animator.StringToHash("Run");
         Idle = Animator.StringToHash("Idle");
         AttackRight = Animator.StringToHash("AttackRight");
         AttackLeft = Animator.StringToHash("AttackLeft");

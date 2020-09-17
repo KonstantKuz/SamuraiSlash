@@ -86,5 +86,7 @@ public class ReorderableDrawer
         }
 
         serializedObject.ApplyModifiedProperties();
+        
+        EditorApplication.update.Invoke();
     }
 }
