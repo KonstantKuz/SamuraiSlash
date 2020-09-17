@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Security.AccessControl;
 using Dreamteck.Splines;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class PlayerController : MonoBehaviour
+[System.Serializable]
+public class SlowMoSettings
 {
     [Tooltip("это ПРОЦЕНТНОЕ соотношение точки старта слоумо относительно анимации удара" +
              "то есть если значение равно 0.2 то слоумо включится почти сразу в начале анимации удара" +
@@ -13,8 +15,14 @@ public class PlayerController : MonoBehaviour
              "сделано так потому что одна анимация удара может длится дольше чем другая" +
              "и тогда слоумо будет включаться либо уже после фактического удара по врагу" +
              "либо перед ударом")]
-    [SerializeField] private float slowMoStartTimePercentage;
-    [SerializeField] private float slowMoDuration;
+    public float startTimePercentage = 0.5f;
+    public float duration = 0.03f;
+}
+
+public class PlayerController : MonoBehaviour
+{
+    [SerializeField] private SlowMoSettings slowMoSettings;
+    [SerializeField] private CameraSettings cameraSettings;
     
     [SerializeField] private Transform[] checkPoints;
     [SerializeField] private Transform cameraPosition;
@@ -30,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private AttackType attackType;
 
     private float playerLookAtSpeed = 3f;
-    private float cameraSpeed = 5f;
 
     private void Awake()
     {
@@ -101,8 +108,8 @@ public class PlayerController : MonoBehaviour
     private void EnableSlowMo()
     {
         SlowMoData slowMoData = new SlowMoData();
-        slowMoData.delay = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * slowMoStartTimePercentage;
-        slowMoData.duration = slowMoDuration;
+        slowMoData.delay = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * slowMoSettings.startTimePercentage;
+        slowMoData.duration = slowMoSettings.duration;
         Observer.Instance.OnEnableSlowMo(slowMoData);
     }
 
@@ -159,23 +166,37 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateCamera()
     {
+        if (currentEnemy)
+        {
+            FightCamUpdate();
+        }
+        else
+        {
+            NormalCamUpdate();
+        }
+    }
+
+    private void NormalCamUpdate()
+    {
         camera.transform.position = Vector3.Lerp(camera.transform.position,
                                                  cameraPosition.position,
-                                                 Time.deltaTime * cameraSpeed);
-        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, 
+                                                 Time.deltaTime * cameraSettings.normalFollowSpeed);
+        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation,
                                                     cameraPosition.rotation,
-                                                    Time.deltaTime * cameraSpeed);
-        
-        if (!currentEnemy)
-        {
-            return;
-        }
+                                                    Time.deltaTime * cameraSettings.normalRotationSpeed);
+    }
+
+    private void FightCamUpdate()
+    {
+        camera.transform.position = Vector3.Lerp(camera.transform.position,
+                                                 cameraPosition.position,
+                                                 Time.deltaTime * cameraSettings.fightFollowSpeed);
 
         Vector3 targetDirection = currentEnemy.transform.position - camera.transform.position;
         Quaternion fullLookRotation = Quaternion.LookRotation(targetDirection);
-        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, 
-                                                    fullLookRotation, 
-                                                    Time.deltaTime * cameraSpeed);
+        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation,
+                                                    fullLookRotation,
+                                                    Time.deltaTime * cameraSettings.fightRotationSpeed);
     }
 
     public void SetAttackType(AttackType attackType)

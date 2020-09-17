@@ -876,10 +876,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6082a517bdd3c9946b34946ba13c6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowMoStartTimePercentage: 0.5
-  slowMoDuration: 0.03
+  slowMoSettings:
+    startTimePercentage: 0.5
+    duration: 0.03
+  cameraSettings:
+    normalFollowSpeed: 6
+    normalRotationSpeed: 6
+    fightFollowSpeed: 2
+    fightRotationSpeed: 3
   checkPoints:
-  - {fileID: 0}
   - {fileID: 0}
   cameraPosition: {fileID: 702723906658728755}
   sword: {fileID: 702723906371166643}

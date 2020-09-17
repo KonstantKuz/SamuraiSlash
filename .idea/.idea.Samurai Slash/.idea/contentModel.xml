@@ -258,6 +258,7 @@
         <e p="Scripts" t="Include">
           <e p="AnimatorHashes.cs" t="Include" />
           <e p="BossFightCheckPoint.cs" t="Include" />
+          <e p="CameraSettings.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="FightCheckPointEditor.cs" t="Include" />
           </e>
