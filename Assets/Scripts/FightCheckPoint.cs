@@ -19,6 +19,8 @@ public class FightCheckPoint : MonoBehaviour
     {
         if (other.CompareTag(GameConstants.TagPlayer))
         {
+            other.GetComponent<PlayerController>().SetAttackType(AttackType.Simple);
+            
             foreach (EnemyController enemy in pointEnemies)
             {
                 enemy.GoToStartPoint();

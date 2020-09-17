@@ -5,8 +5,6 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [SerializeField] private RazorsSettings razorsSettings;
-
-    [SerializeField] private GameObject superAttackVFX;
     
     private bool isAttacking;
     public bool IsAttacking
@@ -14,17 +12,14 @@ public class Sword : MonoBehaviour
         get { return isAttacking; }
     }
 
-    public void StartAttack(AttackType attackType)
+    public void StartAttack()
     {
         isAttacking = true;
-        if(attackType == AttackType.Super)
-            superAttackVFX?.gameObject.SetActive(true);
     }
 
     public void StopAttack()
     {
         isAttacking = false;
-        superAttackVFX?.gameObject.SetActive(false);
     }
 
     private void Start()

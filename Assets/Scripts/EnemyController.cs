@@ -15,6 +15,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Transform currentAimTarget;
     private PlayerController playerController;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
     public void GoToStartPoint()
     {
         animator.SetFloat(AnimatorHashes.Motion, 1f);
@@ -24,7 +31,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         IEnumerator AimToPlayerAfterFinishStartPoint()
         {
-            while ((transform.position - currentAimTarget.position).magnitude > 1f)
+            while ((transform.position - currentAimTarget.position).magnitude > 0.5f)
             {
                 yield return null;
             }
@@ -34,11 +41,21 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-    private void Awake()
+    public void GoToPlayer()
     {
-        animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();
-        playerController = FindObjectOfType<PlayerController>();
+        animator.SetFloat(AnimatorHashes.Motion, 1f);
+    }
+
+    public void GoRunAway()
+    {
+        Vector3 targetDirection = playerController.transform.forward;
+        //Vector3 targetDirection = currentAimTarget.position - transform.position;
+        Vector3 targetDirectionXZ = Vector3.ProjectOnPlane(targetDirection, transform.up);
+        Quaternion lookRotationAboutYAxis = Quaternion.LookRotation(targetDirectionXZ);
+        transform.rotation = lookRotationAboutYAxis;
+
+        currentAimTarget = attackRaycaster;
+        animator.SetFloat(AnimatorHashes.Motion,1f);
     }
     
     private void Update()
@@ -89,6 +106,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         slowMoData.duration = GameConstants.SlowMoDurationOnEnemyAttack;
         Observer.Instance.OnEnableSlowMo(slowMoData);
     }
+
+    public void SlowDown()
+    {
+        animator.speed = 0.3f;
+    }
     
     public void TakeDamage()
     {
@@ -103,21 +125,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
-    public void GoToPlayer()
-    {
-        animator.SetFloat(AnimatorHashes.Motion, 1f);
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Vector3 attackRayStart = attackRaycaster.position;
         Vector3 attackRayEnd = attackRaycaster.position + attackRaycaster.forward * attackRayLength;
         Gizmos.DrawLine(attackRayStart, attackRayEnd);
-    }
-
-    public void SlowDown()
-    {
-        animator.speed = 0.3f;
     }
 }

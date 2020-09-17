@@ -74,6 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6bd42db0129e64bb2ed849d371c496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstAttackDelay: 1
-  regularAttackDelay: 0.2
+  firstAttackDelay: 1.5
+  regularAttackDelay: 0.3
   pointEnemies: []

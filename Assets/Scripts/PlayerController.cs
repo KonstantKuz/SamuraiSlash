@@ -7,10 +7,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private FightCheckPoint[] checkPoints;
-
-    [SerializeField] private AttackType attackType;
-    [SerializeField] private Sword sword;
     [Tooltip("это ПРОЦЕНТНОЕ соотношение точки старта слоумо относительно анимации удара" +
              "то есть если значение равно 0.2 то слоумо включится почти сразу в начале анимации удара" +
              "если равно 0.8 - слоумо включится почти в конце анимации удара" +
@@ -19,17 +15,22 @@ public class PlayerController : MonoBehaviour
              "либо перед ударом")]
     [SerializeField] private float slowMoStartTimePercentage;
     [SerializeField] private float slowMoDuration;
+    
+    [SerializeField] private Transform[] checkPoints;
     [SerializeField] private Transform cameraPosition;
-
+    [SerializeField] private Sword sword;
+    [SerializeField] private GameObject superAttackVFX;
+    
     private Camera camera;
     private Animator animator;
     private EnemyController currentEnemy;
 
     private Transform currentAimTarget;
     private int currentCheckPointIndex;
+    private AttackType attackType;
 
     private float playerLookAtSpeed = 3f;
-    private float cameraSpeed = 6f;
+    private float cameraSpeed = 5f;
 
     private void Awake()
     {
@@ -62,7 +63,24 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
+        if (attackType == AttackType.Simple)
+        {
+            NormalAttack(swipe);
+        }
+        else
+        {
+            animator.SetTrigger(AnimatorHashes.SuperAttack);
+        }
+
+        EnableSlowMo();
+
+        sword.StartAttack();
+        currentEnemy.SlowDown();
+    }
+
+    private void NormalAttack(SwipeData swipe)
+    {
         switch (swipe.Direction)
         {
             case SwipeDirection.Up:
@@ -78,11 +96,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger(AnimatorHashes.AttackRight);
                 break;
         }
-
-        EnableSlowMo();
-
-        sword.StartAttack(attackType);
-        currentEnemy.SlowDown();
     }
 
     private void EnableSlowMo()
@@ -163,5 +176,10 @@ public class PlayerController : MonoBehaviour
         camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, 
                                                     fullLookRotation, 
                                                     Time.deltaTime * cameraSpeed);
+    }
+
+    public void SetAttackType(AttackType attackType)
+    {
+        this.attackType = attackType;
     }
 }

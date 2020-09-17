@@ -205,6 +205,18 @@
             </e>
           </e>
         </e>
+        <e p="Epic Toon FX" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="ETFXRotation.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Hit &amp; Slashes Vol.3" t="Include">
+          <e p="Demo Scene" t="Include">
+            <e p="ButtonAnimation.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+          </e>
+          <e p="SelfDestruct.cs" t="Include" />
+        </e>
         <e p="Other" t="Include">
           <e p="Demigiant" t="Include">
             <e p="DOTween" t="Include">
@@ -250,6 +262,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AnimatorHashes.cs" t="Include" />
+          <e p="BossFightCheckPoint.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="FightCheckPointEditor.cs" t="Include" />
           </e>
