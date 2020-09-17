@@ -19,7 +19,8 @@ public class Observer : Singleton<Observer>
 
     private bool isLevelCompleted = false;
     public Action<SlowMoData> OnEnableSlowMo = delegate { Debug.Log("OnEnableSlowMo triggered"); };
-    public Action OnSlowMoDisabled = delegate { Debug.Log("OnSlowMoDisabled triggered"); };
+    //public Action OnSlowMoDisabled = delegate { Debug.Log("OnSlowMoDisabled triggered"); };
+    public Action<EnemyController> OnNextEnemyPushed = delegate { Debug.Log("OnNextEnemyPushed triggered"); };
     public Action OnEnemyDied = delegate { Debug.Log("OnEnemyDied triggered"); };
 
     public Action OnFightStarterTriggered = delegate { Debug.Log("OnFightStarterTriggered triggered"); };

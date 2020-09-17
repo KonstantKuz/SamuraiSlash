@@ -74,6 +74,7 @@
           <e p="EventTriggers.cs" t="Include" />
           <e p="GameConstants.cs" t="Include" />
           <e p="GameStarter.cs" t="Include" />
+          <e p="IDamageable.cs" t="Include" />
           <e p="LevelEnemies.cs" t="Include" />
           <e p="LevelManager.cs" t="Include" />
           <e p="Observer" t="Include">
@@ -82,6 +83,7 @@
           </e>
           <e p="PlayerController.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
+          <e p="RazorsSettings.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="SlowMoController.cs" t="Include" />
           <e p="SpawnManager.cs" t="Include" />
@@ -97,6 +99,7 @@
             <e p="UIAnimationManager.cs" t="Include" />
             <e p="UIEffectsHolder.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
+            <e p="UISliceEffect.cs" t="Include" />
           </e>
         </e>
         <e p="Templates" t="Include">

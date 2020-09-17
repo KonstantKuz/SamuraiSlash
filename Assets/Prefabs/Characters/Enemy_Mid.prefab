@@ -670,7 +670,6 @@ GameObject:
   - component: {fileID: 7234285245545150338}
   - component: {fileID: 1909843608419876914}
   - component: {fileID: 7926891344830643848}
-  - component: {fileID: 7973664490463236908}
   m_Layer: 0
   m_Name: Enemy_Mid
   m_TagString: Untagged
@@ -715,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 0}
   attackRaycaster: {fileID: 8780219589081632901}
-  attackRayLength: 2
+  attackRayLength: 1.2
 --- !u!95 &1909843608419876914
 Animator:
   serializedVersion: 3
@@ -747,25 +746,11 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!136 &7973664490463236908
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3096390428456469295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3156953558310455153
 GameObject:
@@ -2075,7 +2060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6389032219939948245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2892813933218235108}

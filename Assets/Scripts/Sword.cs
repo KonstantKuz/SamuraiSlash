@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    [SerializeField] private Transform[] razors;
-    [SerializeField] private float razorLength;
-    [SerializeField] private float razorHelpSphereRadius;
+    [SerializeField] private RazorsSettings razorsSettings;
+
+    [SerializeField] private GameObject superAttackVFX;
     
     private bool isAttacking;
-
     public bool IsAttacking
     {
         get { return isAttacking; }
     }
 
-    public void StartAttack()
+    public void StartAttack(AttackType attackType)
     {
         isAttacking = true;
+        if(attackType == AttackType.Super)
+            superAttackVFX?.gameObject.SetActive(true);
     }
 
     public void StopAttack()
     {
         isAttacking = false;
+        superAttackVFX?.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        razorsSettings.ray = new Ray();
     }
 
     private void FixedUpdate()
@@ -30,19 +37,21 @@ public class Sword : MonoBehaviour
         if (!isAttacking)
             return;
 
-        for (int i = 0; i < razors.Length; i++)
+        foreach (Transform razor in razorsSettings.razors)
         {
-            Ray ray = new Ray(razors[i].position, razors[i].up);
-            if (Physics.SphereCast(ray, razorHelpSphereRadius, out RaycastHit hit, razorLength))
+            razorsSettings.ray.origin = razor.position;
+            razorsSettings.ray.direction = razor.up;
+            
+            if (Physics.SphereCast(razorsSettings.ray, razorsSettings.razorHelpSphereRadius, 
+                                   out razorsSettings.hit, razorsSettings.razorLength))
             {
-                IDamageable damageable = hit.transform.GetComponent<IDamageable>(); 
-                if (damageable != null)
+                IDamageable damageable; 
+                if (razorsSettings.hit.transform.TryGetComponent(out damageable))
                 {
-                    Debug.Log($"sword has been attacked {hit.transform.name}");
+                    Debug.Log($"sword has been attacked {razorsSettings.hit.transform.name}");
 
                     damageable.TakeDamage();
                     StopAttack();
-                    
                     break;
                 }
             }
@@ -52,15 +61,16 @@ public class Sword : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        for (int i = 0; i < razors.Length; i++)
+        for (int i = 0; i < razorsSettings.razors.Length; i++)
         {
-            Gizmos.DrawLine(razors[i].position, razors[i].position + razors[i].up * razorLength);
-            Gizmos.DrawWireSphere(razors[i].position + razors[i].up * razorLength, razorHelpSphereRadius);
+            Gizmos.DrawLine(razorsSettings.razors[i].position,razorsSettings.razors[i].position +razorsSettings. razors[i].up * razorsSettings.razorLength);
+            Gizmos.DrawWireSphere(razorsSettings.razors[i].position + razorsSettings.razors[i].up * razorsSettings.razorLength, razorsSettings.razorHelpSphereRadius);
         }
     }
 }
 
-public interface IDamageable
+public enum AttackType
 {
-    void TakeDamage();
+    Simple,
+    Super,
 }

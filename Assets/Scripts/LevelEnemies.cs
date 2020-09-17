@@ -29,10 +29,13 @@ public class LevelEnemies : MonoBehaviour
                 delay = 1f;
             }
             yield return new WaitForSeconds(delay);
-            
+
+            if (currentEnemyIndex >= currentLevelEnemies.Length)
+                yield break;
+
+            Observer.Instance.OnNextEnemyPushed(currentLevelEnemies[currentEnemyIndex]);
             currentLevelEnemies[currentEnemyIndex].GoToPlayer();
             currentEnemyIndex++;
-            Debug.Log($"current enemy index == {currentEnemyIndex}");
         }
     }
 }

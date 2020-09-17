@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Security.AccessControl;
 using UnityEngine;
 
@@ -8,11 +9,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform attackRaycaster;
     [SerializeField] private float attackRayLength;
-    //[SerializeField] private float attackRayHelpSphereRadius;
 
+    private Animator animator;
+    private CharacterController controller;
     private Transform currentAimTarget;
     private PlayerController playerController;
-    private Animator animator;
 
     private void OnEnable()
     {
@@ -40,13 +41,14 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        playerController = FindObjectOfType<PlayerController>();
         animator = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
     
     private void Update()
     {
-        if (animator.GetBool(AnimatorHashes.Attack) || animator.GetBool(AnimatorHashes.Die))
+        if (animator.GetBool(AnimatorHashes.Attack) || animator.GetBool(AnimatorHashes.Death))
             return;
         
         AimToCurrentTarget();
@@ -80,6 +82,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void Attack()
     {
         animator.applyRootMotion = false;
+        animator.SetFloat(AnimatorHashes.AttackType, Random.Range(0,3));
         animator.SetBool(AnimatorHashes.Attack, true);
         EnableSlowMo();
     }
@@ -89,16 +92,18 @@ public class EnemyController : MonoBehaviour, IDamageable
         SlowMoData slowMoData = new SlowMoData();
         slowMoData.delay = GameConstants.SlowMoDelayOnEnemyAttack;
         slowMoData.duration = GameConstants.SlowMoDurationOnEnemyAttack;
-        //slowMoData.animatorsSpeed = GameConstants.SlowMoAnimatorsSpeedOnEnemyAttack;
         Observer.Instance.OnEnableSlowMo(slowMoData);
     }
     
     public void TakeDamage()
     {
-        if (!animator.GetBool(AnimatorHashes.Die))
+        if (!animator.GetBool(AnimatorHashes.Death))
         {
+            animator.speed = 1f;
+            controller.enabled = false;
             animator.applyRootMotion = true;
-            animator.SetBool(AnimatorHashes.Die, true);
+            animator.SetFloat(AnimatorHashes.DeathType, Random.Range(0,2));
+            animator.SetBool(AnimatorHashes.Death, true);
             Observer.Instance.OnEnemyDied();
         }
     }
@@ -114,6 +119,10 @@ public class EnemyController : MonoBehaviour, IDamageable
         Vector3 attackRayStart = attackRaycaster.position;
         Vector3 attackRayEnd = attackRaycaster.position + attackRaycaster.forward * attackRayLength;
         Gizmos.DrawLine(attackRayStart, attackRayEnd);
-        //Gizmos.DrawWireSphere(attackRayEnd, attackRayHelpSphereRadius);
+    }
+
+    public void SlowDown()
+    {
+        animator.speed = 0.3f;
     }
 }
