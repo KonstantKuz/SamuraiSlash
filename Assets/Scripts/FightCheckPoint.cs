@@ -19,6 +19,7 @@ public class FightCheckPoint : MonoBehaviour
     {
         if (other.CompareTag(GameConstants.TagPlayer))
         {
+            DisableCollider();
             other.GetComponent<PlayerController>().SetAttackType(AttackType.Simple);
             
             foreach (EnemyController enemy in pointEnemies)
@@ -57,5 +58,10 @@ public class FightCheckPoint : MonoBehaviour
             Observer.Instance.OnNextEnemyPushed(pointEnemies[currentEnemyIndex]);
             currentEnemyIndex++;
         }
+    }
+
+    private void DisableCollider()
+    {
+        GetComponent<Collider>().enabled = false;
     }
 }

@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Security.AccessControl;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
@@ -14,6 +16,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     private CharacterController controller;
     private Transform currentAimTarget;
     private PlayerController playerController;
+
+    public Action OnTakeDamage { get; set; }
 
     private void Awake()
     {
@@ -49,11 +53,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void GoRunAway()
     {
         Vector3 targetDirection = playerController.transform.forward;
-        //Vector3 targetDirection = currentAimTarget.position - transform.position;
         Vector3 targetDirectionXZ = Vector3.ProjectOnPlane(targetDirection, transform.up);
         Quaternion lookRotationAboutYAxis = Quaternion.LookRotation(targetDirectionXZ);
         transform.rotation = lookRotationAboutYAxis;
-
         currentAimTarget = attackRaycaster;
         animator.SetFloat(AnimatorHashes.Motion,1f);
     }
@@ -122,6 +124,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             animator.SetFloat(AnimatorHashes.DeathType, Random.Range(0,2));
             animator.SetBool(AnimatorHashes.Death, true);
             Observer.Instance.OnEnemyDied();
+            OnTakeDamage?.Invoke();
         }
     }
 
