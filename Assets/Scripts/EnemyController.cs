@@ -125,6 +125,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             animator.SetBool(AnimatorHashes.Death, true);
             Observer.Instance.OnEnemyDied();
             OnTakeDamage?.Invoke();
+            ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position, attackRaycaster.rotation);
         }
     }
 

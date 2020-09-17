@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] checkPoints;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private Sword sword;
-    [SerializeField] private GameObject superAttackVFX;
     
     private Camera camera;
     private Animator animator;
@@ -77,6 +76,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            ObjectPooler.Instance.SpawnObject("SuperAttack", transform.position);
             animator.SetTrigger(AnimatorHashes.SuperAttack);
         }
 
