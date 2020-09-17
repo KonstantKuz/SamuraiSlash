@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using Dreamteck.Splines;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FightCheckPoint[] checkPoints;
-    
+
     [SerializeField] private AttackType attackType;
     [SerializeField] private Sword sword;
     [Tooltip("это ПРОЦЕНТНОЕ соотношение точки старта слоумо относительно анимации удара" +
@@ -18,18 +19,24 @@ public class PlayerController : MonoBehaviour
              "либо перед ударом")]
     [SerializeField] private float slowMoStartTimePercentage;
     [SerializeField] private float slowMoDuration;
-    
+    [SerializeField] private Transform cameraPosition;
+
+    private Camera camera;
     private Animator animator;
     private EnemyController currentEnemy;
 
     private Transform currentAimTarget;
     private int currentCheckPointIndex;
-    
+
+    private float playerLookAtSpeed = 3f;
+    private float cameraSpeed = 6f;
+
     private void Awake()
     {
+        camera = Camera.main;
         animator = GetComponent<Animator>();
     }
-    
+
     private void OnEnable()
     {
         Observer.Instance.OnNextEnemyPushed += SetCurrentTarget;
@@ -48,9 +55,14 @@ public class PlayerController : MonoBehaviour
     {
         currentEnemy = null;
     }
-    
+
     private void Attack(SwipeData swipe)
     {
+        if (!currentEnemy)
+        {
+            return;
+        }
+        
         switch (swipe.Direction)
         {
             case SwipeDirection.Up:
@@ -66,9 +78,9 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger(AnimatorHashes.AttackRight);
                 break;
         }
-        
+
         EnableSlowMo();
-        
+
         sword.StartAttack(attackType);
         currentEnemy.SlowDown();
     }
@@ -107,6 +119,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("all check points passed");
             return;
         }
+
         currentAimTarget = checkPoints[currentCheckPointIndex].transform;
         animator.SetTrigger(AnimatorHashes.Run);
     }
@@ -114,16 +127,41 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         AimToCurrentTarget();
+        UpdateCamera();
     }
-    
+
     private void AimToCurrentTarget()
     {
-        if (currentAimTarget)
+        if (!currentAimTarget)
         {
-            Vector3 targetDirection = currentAimTarget.position - transform.position;
-            Vector3 targetDirectionXZ = Vector3.ProjectOnPlane(targetDirection, transform.up);
-            Quaternion lookRotationAboutYAxis = Quaternion.LookRotation(targetDirectionXZ);
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotationAboutYAxis, Time.deltaTime * 5f);
+            return;
         }
+
+        Vector3 targetDirection = currentAimTarget.position - transform.position;
+        Vector3 targetDirectionXZ = Vector3.ProjectOnPlane(targetDirection, transform.up);
+        Quaternion lookRotationAboutYAxis = Quaternion.LookRotation(targetDirectionXZ);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotationAboutYAxis,
+                                             Time.deltaTime * playerLookAtSpeed);
+    }
+
+    private void UpdateCamera()
+    {
+        camera.transform.position = Vector3.Lerp(camera.transform.position,
+                                                 cameraPosition.position,
+                                                 Time.deltaTime * cameraSpeed);
+        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, 
+                                                    cameraPosition.rotation,
+                                                    Time.deltaTime * cameraSpeed);
+        
+        if (!currentEnemy)
+        {
+            return;
+        }
+
+        Vector3 targetDirection = currentEnemy.transform.position - camera.transform.position;
+        Quaternion fullLookRotation = Quaternion.LookRotation(targetDirection);
+        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, 
+                                                    fullLookRotation, 
+                                                    Time.deltaTime * cameraSpeed);
     }
 }

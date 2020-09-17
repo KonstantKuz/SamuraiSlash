@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4932866189711747341}
   m_LocalRotation: {x: -0.057991885, y: 0.000000059604623, z: 0.000000059604623, w: 0.99831706}
-  m_LocalPosition: {x: -0, y: 0.261, z: 0.003}
+  m_LocalPosition: {x: 0, y: 0.422, z: -0.043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932866191503849430}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4932866190290855999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.057, z: -0.021}
+  m_LocalPosition: {x: 0, y: -0.018, z: -0.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932866191503849430}
@@ -156,6 +156,8 @@ Transform:
   - {fileID: 4932866189711747342}
   - {fileID: 4932866190290855968}
   - {fileID: 4517077461029344522}
+  - {fileID: 7876731683692616472}
+  - {fileID: 1286943235552112710}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
@@ -220,11 +222,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   razorsSettings:
     razorLength: 1
-    razorHelpSphereRadius: 0.2
+    razorHelpSphereRadius: 0.3
     razors:
-    - {fileID: 4932866189711747342}
     - {fileID: 4932866190290855968}
     - {fileID: 4517077461029344522}
+    - {fileID: 7876731683692616472}
+    - {fileID: 1286943235552112710}
   superAttackVFX: {fileID: 4932866189700627460}
 --- !u!114 &4932866190867216850
 MonoBehaviour:
@@ -272,10 +275,70 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5501162234087761853}
-  m_LocalRotation: {x: 0.022903983, y: -0.00000014901154, z: -0.00000025331963, w: 0.9997377}
+  m_LocalRotation: {x: 0.043138266, y: -0.00000020861619, z: -0.00000011920925, w: 0.9990691}
   m_LocalPosition: {x: -0, y: -0.34, z: -0.047}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932866191503849430}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 2.6250002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.945, y: 0, z: 0}
+--- !u!1 &6765779942342510313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7876731683692616472}
+  m_Layer: 0
+  m_Name: Razor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7876731683692616472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765779942342510313}
+  m_LocalRotation: {x: 0.065457664, y: -0, z: -0.00000016391276, w: 0.99785537}
+  m_LocalPosition: {x: -0, y: -0.632, z: -0.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4932866191503849430}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 7.5060005, y: 0, z: 0}
+--- !u!1 &8101886007232610233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286943235552112710}
+  m_Layer: 0
+  m_Name: Razor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1286943235552112710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8101886007232610233}
+  m_LocalRotation: {x: -0.057991885, y: 0.000000059604623, z: 0.000000059604623, w: 0.99831706}
+  m_LocalPosition: {x: -0, y: 0.182, z: 0.044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4932866191503849430}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -6.649, y: 0, z: 0}

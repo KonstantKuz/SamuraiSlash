@@ -900,7 +900,42 @@ PrefabInstance:
     - target: {fileID: 6124495167518420659, guid: 6136ded66c8204349a8827aec93de431,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.20375156
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.013677518
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0028774831
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97892284
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4226253
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.0588546
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.7173653
       objectReference: {fileID: 0}
     - target: {fileID: 6124495167843742043, guid: 6136ded66c8204349a8827aec93de431,
         type: 3}
@@ -2285,11 +2320,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 702723906231484449, guid: e040aae70e4a48e46a272b169d58cd36,
-        type: 3}
-      propertyPath: checkPoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 702723906231484449, guid: e040aae70e4a48e46a272b169d58cd36,
         type: 3}
       propertyPath: checkPoints.Array.data[0]
