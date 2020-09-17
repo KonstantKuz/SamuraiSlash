@@ -17,7 +17,10 @@ public class ReorderableDrawerTemplate : Editor
     {
         // If you have some different arrays in one class use
         // DrawPropertiesExcluding(serializedObject,  new string [] { arrayPropertyName1, arrayPropertyName2, ...} );
+        serializedObject.Update();
         DrawPropertiesExcluding(serializedObject,  arrayPropertyName);
+        serializedObject.ApplyModifiedProperties();
+        
         arrayDrawer.Draw(serializedObject, target);
     }
 }
