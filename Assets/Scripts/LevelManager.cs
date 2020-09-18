@@ -48,9 +48,9 @@ public class LevelManager : MonoBehaviour
         Debug.Log("UpdateActiveLevel");
         Debug.Log($"<color=red> Setted active level prefs to currentlevel = {currentLevel} </color>");
         currentLevel++;
-        if(currentLevel>maxLevelCount)
+        if(currentLevel >= maxLevelCount)
         {
-            currentLevel = 1;
+            currentLevel = 0;
         }
         PlayerPrefs.SetInt(GameConstants.PrefsCurrentLevel, currentLevel);
     }

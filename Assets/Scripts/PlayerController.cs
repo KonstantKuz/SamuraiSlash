@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DelayedFinish());
             IEnumerator DelayedFinish()
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(2f);
                 Observer.Instance.CallOnWinLevel();
             }
             return;
