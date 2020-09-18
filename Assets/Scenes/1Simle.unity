@@ -21043,7 +21043,7 @@ PrefabInstance:
     - target: {fileID: 6124495167843742040, guid: 6136ded66c8204349a8827aec93de431,
         type: 3}
       propertyPath: m_Shadows.m_Strength
-      value: 0.64
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6124495167843742040, guid: 6136ded66c8204349a8827aec93de431,
         type: 3}
@@ -21063,7 +21063,7 @@ PrefabInstance:
     - target: {fileID: 6124495167843742040, guid: 6136ded66c8204349a8827aec93de431,
         type: 3}
       propertyPath: m_Lightmapping
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6124495167843742040, guid: 6136ded66c8204349a8827aec93de431,
         type: 3}
