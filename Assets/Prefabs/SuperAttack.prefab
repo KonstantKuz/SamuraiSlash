@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: RotationBySpeedModule.y.scalar
-      value: 26.17994
+      value: 34.906586
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: ColorModule.enabled
@@ -206,15 +206,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.x.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.y.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.curve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.curve.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.y.minScalar
+      value: 43.633232
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: m_RenderMode
@@ -232,6 +260,10 @@ PrefabInstance:
       propertyPath: m_RenderAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4c34cf19c4915b40bdeee7ca8efc388, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
 --- !u!4 &7729674605574061374 stripped
@@ -377,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: RotationBySpeedModule.y.scalar
-      value: 26.17994
+      value: 34.906586
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: ColorModule.enabled
@@ -413,15 +445,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.x.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.y.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.curve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.curve.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.y.minScalar
+      value: 43.633232
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: m_RenderMode
@@ -439,6 +499,10 @@ PrefabInstance:
       propertyPath: m_RenderAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4c34cf19c4915b40bdeee7ca8efc388, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
 --- !u!4 &8892362331541721421 stripped
@@ -576,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: RotationBySpeedModule.y.scalar
-      value: 26.17994
+      value: 34.906586
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startRotationY.scalar
@@ -620,15 +684,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.x.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.y.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.curve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.curve.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: RotationBySpeedModule.y.minScalar
+      value: 43.633232
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
       propertyPath: m_RenderMode
@@ -646,6 +738,10 @@ PrefabInstance:
       propertyPath: m_RenderAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4c34cf19c4915b40bdeee7ca8efc388, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc78484d60b2bd640bf058066471aa3f, type: 3}
 --- !u!4 &8965192430926833136 stripped
