@@ -46,15 +46,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        Observer.Instance.OnStartGame += GoToNextCheckPoint;
         Observer.Instance.OnNextEnemyPushed += SetCurrentTarget;
         Observer.Instance.OnCheckPointPassed += GoToNextCheckPoint;
         Observer.Instance.OnCheckPointPassed += ClearCurrentEnemy;
         SwipeDetector.OnSwipe += Attack;
-    }
-
-    private void Start()
-    {
-        GoToNextCheckPoint();
     }
 
     private void SetCurrentTarget(EnemyController enemy)
@@ -141,7 +137,12 @@ public class PlayerController : MonoBehaviour
     {
         if (currentCheckPointIndex >= checkPoints.Length)
         {
-            Debug.Log("all check points passed");
+            StartCoroutine(DelayedFinish());
+            IEnumerator DelayedFinish()
+            {
+                yield return new WaitForSeconds(1f);
+                Observer.Instance.CallOnWinLevel();
+            }
             return;
         }
 

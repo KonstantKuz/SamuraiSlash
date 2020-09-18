@@ -17,6 +17,11 @@ public class UISliceEffect : MonoBehaviour
         SwipeDetector.OnSwipe += ActivateSliceEffect;
     }
 
+    private void OnDisable()
+    {
+        SwipeDetector.OnSwipe -= ActivateSliceEffect;
+    }
+
     private void ActivateSliceEffect(SwipeData obj)
     {
         Vector3 currentRotation = sliceEffect.transform.eulerAngles;
