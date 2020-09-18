@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 7234285245545150338, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
         type: 3}
       propertyPath: attackRayLength
-      value: 1.6
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 7294714821795672457, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
         type: 3}
