@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void Attack()
     {
-        animator.applyRootMotion = false;
+        //animator.applyRootMotion = false;
         animator.SetFloat(AnimatorHashes.AttackType, Random.Range(0,3));
         animator.SetBool(AnimatorHashes.Attack, true);
         EnableSlowMo();
@@ -120,7 +120,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             animator.speed = 1f;
             controller.enabled = false;
-            animator.applyRootMotion = true;
+            //animator.applyRootMotion = true;
             animator.SetFloat(AnimatorHashes.DeathType, Random.Range(0,2));
             animator.SetBool(AnimatorHashes.Death, true);
             Observer.Instance.OnEnemyDied();
@@ -132,10 +132,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void SpawnBlood()
     {
         ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position, attackRaycaster.rotation);
-        ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position,
-                                          attackRaycaster.rotation*Quaternion.AngleAxis(40, attackRaycaster.up));
-        ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position, 
-                                          attackRaycaster.rotation*Quaternion.AngleAxis(-40, attackRaycaster.up));
     }
 
     private void OnDrawGizmos()

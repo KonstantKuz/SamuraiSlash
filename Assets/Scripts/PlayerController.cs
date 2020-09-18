@@ -47,9 +47,14 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         Observer.Instance.OnNextEnemyPushed += SetCurrentTarget;
-        Observer.Instance.OnCheckPointPassed += Go;
+        Observer.Instance.OnCheckPointPassed += GoToNextCheckPoint;
         Observer.Instance.OnCheckPointPassed += ClearCurrentEnemy;
         SwipeDetector.OnSwipe += Attack;
+    }
+
+    private void Start()
+    {
+        GoToNextCheckPoint();
     }
 
     private void SetCurrentTarget(EnemyController enemy)
@@ -117,8 +122,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag(GameConstants.TagFightCheckPoint))
         {
-            UpdateCheckPointIndex();
             Stop();
+            UpdateCheckPointIndex();
         }
     }
 
@@ -132,7 +137,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger(AnimatorHashes.Idle);
     }
 
-    private void Go()
+    private void GoToNextCheckPoint()
     {
         if (currentCheckPointIndex >= checkPoints.Length)
         {
