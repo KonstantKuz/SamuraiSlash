@@ -125,8 +125,17 @@ public class EnemyController : MonoBehaviour, IDamageable
             animator.SetBool(AnimatorHashes.Death, true);
             Observer.Instance.OnEnemyDied();
             OnTakeDamage?.Invoke();
-            ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position, attackRaycaster.rotation);
+            SpawnBlood();
         }
+    }
+
+    private void SpawnBlood()
+    {
+        ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position, attackRaycaster.rotation);
+        ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position,
+                                          attackRaycaster.rotation*Quaternion.AngleAxis(40, attackRaycaster.up));
+        ObjectPooler.Instance.SpawnObject("Blood", attackRaycaster.position, 
+                                          attackRaycaster.rotation*Quaternion.AngleAxis(-40, attackRaycaster.up));
     }
 
     private void OnDrawGizmos()
