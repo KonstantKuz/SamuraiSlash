@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b6839bd6069204f9ff23bf472045cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - {fileID: 11400000, guid: 86c35c0b9195ffd4c832b0f15ab2f1e4, type: 2}
+  - {fileID: 11400000, guid: e2bf14b35e00e734491a688f63f86155, type: 2}
   poolGroups: []
 --- !u!1 &4679021664162044415
 GameObject:
@@ -412,7 +414,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -445,7 +447,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -543,11 +545,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3769903608847389995}
     m_Modifications:
+    - target: {fileID: 74479279488046755, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 76.7
+      objectReference: {fileID: 0}
     - target: {fileID: 184304740545628469, guid: 307a0479a7053984d8f77efe38e26cef,
         type: 3}
       propertyPath: uiEffectsHolder
       value: 
       objectReference: {fileID: 6124495166606252935}
+    - target: {fileID: 295855958903432464, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 65.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931353385908176874, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652045195109268783, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063771061161654270, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 33.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304824674086820270, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 76.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249346837562793151, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 73.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7846331748932673830, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 32.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8655952963882139634, guid: 307a0479a7053984d8f77efe38e26cef,
         type: 3}
       propertyPath: m_Name
@@ -661,7 +703,12 @@ PrefabInstance:
     - target: {fileID: 8655952963882139639, guid: 307a0479a7053984d8f77efe38e26cef,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 0
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655952964608013162, guid: 307a0479a7053984d8f77efe38e26cef,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 307a0479a7053984d8f77efe38e26cef, type: 3}

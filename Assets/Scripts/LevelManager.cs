@@ -7,12 +7,16 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int currentLevel;
+    private int maxLevelCount;
+
+    public int CurrentLevel => currentLevel;
 
     private void OnEnable()
     {
+        maxLevelCount = SceneManager.sceneCountInBuildSettings;
         SubscribeToNecessaryEvets();
     }
-
+    
     public void SubscribeToNecessaryEvets()
     {
         Observer.Instance.OnLoadNextLevel += LoadNextLevel;
@@ -28,11 +32,11 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = PlayerPrefs.HasKey(GameConstants.PrefsCurrentLevel)
             ? PlayerPrefs.GetInt(GameConstants.PrefsCurrentLevel)
-            : 1;
+            : 0;
 
         Observer.Instance.OnLevelManagerLoaded(currentLevel);
     }
-    
+
     private void LoadNextLevel()
     {
         UpdateCurrentLevel();
@@ -44,6 +48,10 @@ public class LevelManager : MonoBehaviour
         Debug.Log("UpdateActiveLevel");
         Debug.Log($"<color=red> Setted active level prefs to currentlevel = {currentLevel} </color>");
         currentLevel++;
+        if(currentLevel >= maxLevelCount)
+        {
+            currentLevel = 0;
+        }
         PlayerPrefs.SetInt(GameConstants.PrefsCurrentLevel, currentLevel);
     }
 
@@ -52,7 +60,8 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ResetLevelData()
+    [ContextMenu("Clean prefs")]
+    public void CleanPrefs()
     {
         PlayerPrefs.DeleteKey(GameConstants.PrefsCurrentLevel);
     }

@@ -1949,6 +1949,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 702723906231484449, guid: e040aae70e4a48e46a272b169d58cd36,
         type: 3}
+      propertyPath: checkPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 702723906231484449, guid: e040aae70e4a48e46a272b169d58cd36,
+        type: 3}
       propertyPath: checkPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1864654338}

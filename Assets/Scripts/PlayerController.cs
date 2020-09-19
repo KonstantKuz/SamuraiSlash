@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] checkPoints;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private Sword sword;
-    [SerializeField] private GameObject superAttackVFX;
     
     private Camera camera;
     private Animator animator;
@@ -47,8 +46,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        Observer.Instance.OnStartGame += GoToNextCheckPoint;
         Observer.Instance.OnNextEnemyPushed += SetCurrentTarget;
-        Observer.Instance.OnCheckPointPassed += Go;
+        Observer.Instance.OnCheckPointPassed += GoToNextCheckPoint;
         Observer.Instance.OnCheckPointPassed += ClearCurrentEnemy;
         SwipeDetector.OnSwipe += Attack;
     }
@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            ObjectPooler.Instance.SpawnObject("SuperAttack", transform.position);
             animator.SetTrigger(AnimatorHashes.SuperAttack);
         }
 
@@ -117,8 +118,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag(GameConstants.TagFightCheckPoint))
         {
-            UpdateCheckPointIndex();
             Stop();
+            UpdateCheckPointIndex();
         }
     }
 
@@ -132,11 +133,16 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger(AnimatorHashes.Idle);
     }
 
-    private void Go()
+    private void GoToNextCheckPoint()
     {
         if (currentCheckPointIndex >= checkPoints.Length)
         {
-            Debug.Log("all check points passed");
+            StartCoroutine(DelayedFinish());
+            IEnumerator DelayedFinish()
+            {
+                yield return new WaitForSeconds(2f);
+                Observer.Instance.CallOnWinLevel();
+            }
             return;
         }
 

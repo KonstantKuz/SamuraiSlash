@@ -188,12 +188,10 @@
               <e p="TS_Transform.cs" t="Include" />
             </e>
           </e>
-          <e p="Hit &amp; Slashes Vol.3" t="Include">
-            <e p="Demo Scene" t="Include">
-              <e p="ButtonAnimation.cs" t="Include" />
-              <e p="GameManager.cs" t="Include" />
+          <e p="FX_SwordEffects_Volume01" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ParticleRotation.cs" t="Include" />
             </e>
-            <e p="SelfDestruct.cs" t="Include" />
           </e>
           <e p="XWeaponTrail" t="Include">
             <e p="Editor" t="Include">
