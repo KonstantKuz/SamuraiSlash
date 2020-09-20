@@ -256,7 +256,6 @@
         <e p="Scripts" t="Include">
           <e p="AnimatorHashes.cs" t="Include" />
           <e p="BossFightCheckPoint.cs" t="Include" />
-          <e p="CameraSettings.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="FightCheckPointEditor.cs" t="Include" />
           </e>
@@ -271,8 +270,16 @@
             <e p="Observer.cs" t="Include" />
             <e p="Singleton.cs" t="Include" />
           </e>
-          <e p="PlayerController.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="CameraSettings.cs" t="Include" />
+            <e p="PlayerCinemachineController.cs" t="Include" />
+            <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerCustomCameraController.cs" t="Include" />
+            <e p="PlayerHealth.cs" t="Include" />
+            <e p="SlowMoSettings.cs" t="Include" />
+          </e>
           <e p="PlayerManager.cs" t="Include" />
+          <e p="PostProcessActivator.cs" t="Include" />
           <e p="RazorsSettings.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="SlowMoController.cs" t="Include" />

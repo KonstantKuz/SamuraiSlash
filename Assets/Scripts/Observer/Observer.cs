@@ -18,10 +18,19 @@ public class Observer : Singleton<Observer>
     public Action OnLeftMouseButtonDown;
 
     private bool isLevelCompleted = false;
+
+    public bool IsLevelCompleted
+    {
+        get { return isLevelCompleted; }
+    }
+
+    public Action OnFightStarted = delegate { Debug.Log("OnFightStarted triggered"); };
+    public Action OnEnemyStartsAttack = delegate { Debug.Log("OnEnemyStartsAttack triggered"); };
     public Action<SlowMoData> OnEnableSlowMo = delegate { Debug.Log("OnEnableSlowMo triggered"); };
     //public Action OnSlowMoDisabled = delegate { Debug.Log("OnSlowMoDisabled triggered"); };
     public Action OnCheckPointPassed = delegate { Debug.Log("OnCheckPointPassed triggered"); };
     public Action<EnemyController> OnNextEnemyPushed = delegate { Debug.Log("OnNextEnemyPushed triggered"); };
+    public Action<EnemyController> OnBossEnemyPushed = delegate { Debug.Log("OnBossEnemyPushed triggered"); };
     public Action OnEnemyDied = delegate { Debug.Log("OnEnemyDied triggered"); };
 
     public void CallOnWinLevel()
@@ -40,4 +49,5 @@ public class Observer : Singleton<Observer>
             OnLoseLevel();
         }
     }
+
 }

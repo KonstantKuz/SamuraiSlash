@@ -5,12 +5,13 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [SerializeField] private RazorsSettings razorsSettings;
-    
+
+    private IDamageable parent;
     private bool isAttacking;
-    public bool IsAttacking
-    {
-        get { return isAttacking; }
-    }
+    // public bool IsAttacking
+    // {
+    //     get { return isAttacking; }
+    // }
 
     public void StartAttack()
     {
@@ -22,8 +23,9 @@ public class Sword : MonoBehaviour
         isAttacking = false;
     }
 
-    private void Start()
+    private void Awake()
     {
+        parent = GetComponentInParent<IDamageable>();
         razorsSettings.ray = new Ray();
     }
 
@@ -41,7 +43,7 @@ public class Sword : MonoBehaviour
                                    out razorsSettings.hit, razorsSettings.razorLength))
             {
                 IDamageable damageable; 
-                if (razorsSettings.hit.transform.TryGetComponent(out damageable))
+                if (razorsSettings.hit.transform.TryGetComponent(out damageable) && damageable != parent)
                 {
                     Debug.Log($"sword has been attacked {razorsSettings.hit.transform.name}");
 

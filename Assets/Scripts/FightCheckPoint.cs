@@ -19,7 +19,6 @@ public class FightCheckPoint : MonoBehaviour
     {
         if (other.CompareTag(GameConstants.TagPlayer))
         {
-            DisableCollider();
             other.GetComponent<PlayerController>().SetAttackType(AttackType.Simple);
             
             foreach (EnemyController enemy in pointEnemies)
@@ -27,6 +26,7 @@ public class FightCheckPoint : MonoBehaviour
                 enemy.GoToStartPoint();
             }
 
+            DisableCollider();
             StartDelayedFirstAttack();
             Observer.Instance.OnEnemyDied += PushNextEnemy;
         }
@@ -39,6 +39,7 @@ public class FightCheckPoint : MonoBehaviour
         {
             yield return new WaitForSeconds(firstAttackDelay);
             PushNextEnemy();
+            Observer.Instance.OnFightStarted();
         }
     }
 
@@ -46,7 +47,13 @@ public class FightCheckPoint : MonoBehaviour
     {
         if (currentEnemyIndex >= pointEnemies.Length)
         {
-            Observer.Instance.OnCheckPointPassed();
+            StartCoroutine(DelayedPass());
+            IEnumerator DelayedPass()
+            {
+                yield return new WaitForSeconds(1f);
+                Observer.Instance.OnCheckPointPassed();
+            }
+            //Observer.Instance.OnCheckPointPassed();
             return;
         }
 

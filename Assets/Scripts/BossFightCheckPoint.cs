@@ -18,7 +18,6 @@ public class BossFightCheckPoint : MonoBehaviour
     {
         if (other.CompareTag(GameConstants.TagPlayer))
         {
-            DisableCollider();
             other.GetComponent<PlayerController>().SetAttackType(AttackType.Super);
 
             for (int i = 0; i < pointEnemies.Length; i++)
@@ -29,7 +28,8 @@ public class BossFightCheckPoint : MonoBehaviour
             {
                 escapeEnemies[i].GoToStartPoint();
             }
-
+            
+            DisableCollider();
             StartDelayedAttack();
         }
     }
@@ -43,6 +43,7 @@ public class BossFightCheckPoint : MonoBehaviour
             
             pointEnemies[0].GoToPlayer();
             Observer.Instance.OnNextEnemyPushed(pointEnemies[0]);
+            Observer.Instance.OnBossEnemyPushed(pointEnemies[0]);
             for (int i = 1; i < pointEnemies.Length; i++)
             {
                 pointEnemies[i].GoToPlayer();
@@ -78,4 +79,9 @@ public class BossFightCheckPoint : MonoBehaviour
     {
         GetComponent<Collider>().enabled = false;
     }
+}
+
+public abstract class CheckPoint : MonoBehaviour
+{
+    
 }

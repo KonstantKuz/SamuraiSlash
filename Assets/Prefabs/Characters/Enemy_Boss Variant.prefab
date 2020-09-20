@@ -62,35 +62,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2892813933218235108, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2892813933218235108, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2892813933218235108, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3096390428456469295, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
         type: 3}
       propertyPath: m_Name
       value: Enemy_Boss Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 7234285245545150338, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
-        type: 3}
-      propertyPath: startPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7234285245545150338, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
-        type: 3}
-      propertyPath: attackRayLength
-      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 7294714821795672457, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
         type: 3}

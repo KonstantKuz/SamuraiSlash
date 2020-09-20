@@ -11,7 +11,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform attackRaycaster;
     [SerializeField] private float attackRayLength;
-
+    [SerializeField] private Sword sword;
+    
     private Animator animator;
     private CharacterController controller;
     private Transform currentAimTarget;
@@ -93,12 +94,26 @@ public class EnemyController : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnEnable()
+    {
+        SwipeDetector.OnSwipe += delegate { sword.StopAttack(); };
+    }
+
     private void Attack()
     {
-        animator.applyRootMotion = false;
-        animator.SetFloat(AnimatorHashes.AttackType, Random.Range(0,3));
-        animator.SetBool(AnimatorHashes.Attack, true);
+        PlayAttackAnimation();
         EnableSlowMo();
+        sword.StartAttack();
+        //StartDelayedSwordActivation();
+        //StartDelayedPlayerKillTry();
+        Observer.Instance.OnEnemyStartsAttack();
+    }
+
+    private void PlayAttackAnimation()
+    {
+        //animator.applyRootMotion = false;
+        animator.SetFloat(AnimatorHashes.AttackType, Random.Range(0, 3));
+        animator.SetBool(AnimatorHashes.Attack, true);
     }
 
     private void EnableSlowMo()
@@ -109,24 +124,57 @@ public class EnemyController : MonoBehaviour, IDamageable
         Observer.Instance.OnEnableSlowMo(slowMoData);
     }
 
+    // private void StartDelayedPlayerKillTry()
+    // {
+    //     StartCoroutine(DelayedPlayerKillTry());
+    //
+    //     IEnumerator DelayedPlayerKillTry()
+    //     {
+    //         yield return new WaitForEndOfFrame();
+    //         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * 0.8f);
+    //         if (!animator.GetBool(AnimatorHashes.Death))
+    //         {
+    //             playerController.TakeDamage();
+    //         }
+    //     }
+    // }
+
+    // private void StartDelayedSwordActivation()
+    // {
+    //     StartCoroutine(DelayedSwordActivation());
+    //     IEnumerator DelayedSwordActivation()
+    //     {
+    //         yield return new WaitForEndOfFrame();
+    //         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * 0.3f);
+    //         //yield return new WaitForSecondsRealtime(1.5f);
+    //         sword.StartAttack();
+    //     }
+    // }
+
     public void SlowDown()
     {
-        animator.speed = 0.3f;
+        animator.speed = 0.1f;
     }
     
     public void TakeDamage()
     {
         if (!animator.GetBool(AnimatorHashes.Death))
         {
-            animator.speed = 1f;
-            controller.enabled = false;
-            animator.applyRootMotion = true;
-            animator.SetFloat(AnimatorHashes.DeathType, Random.Range(0,2));
-            animator.SetBool(AnimatorHashes.Death, true);
+            sword.StopAttack();
+            PlayDeathAnimation();
             Observer.Instance.OnEnemyDied();
             OnTakeDamage?.Invoke();
             SpawnBlood();
         }
+    }
+
+    private void PlayDeathAnimation()
+    {
+        animator.speed = 1f;
+        controller.enabled = false;
+        animator.applyRootMotion = true;
+        animator.SetFloat(AnimatorHashes.DeathType, Random.Range(0, 2));
+        animator.SetBool(AnimatorHashes.Death, true);
     }
 
     private void SpawnBlood()

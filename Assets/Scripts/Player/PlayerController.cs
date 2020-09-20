@@ -2,33 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.AccessControl;
-using Dreamteck.Splines;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
-[System.Serializable]
-public class SlowMoSettings
-{
-    [Tooltip("это ПРОЦЕНТНОЕ соотношение точки старта слоумо относительно анимации удара" +
-             "то есть если значение равно 0.2 то слоумо включится почти сразу в начале анимации удара" +
-             "если равно 0.8 - слоумо включится почти в конце анимации удара" +
-             "сделано так потому что одна анимация удара может длится дольше чем другая" +
-             "и тогда слоумо будет включаться либо уже после фактического удара по врагу" +
-             "либо перед ударом")]
-    public float startTimePercentage = 0.5f;
-    public float duration = 0.03f;
-}
-
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField] private SlowMoSettings slowMoSettings;
-    [SerializeField] private CameraSettings cameraSettings;
     
     [SerializeField] private Transform[] checkPoints;
-    [SerializeField] private Transform cameraPosition;
     [SerializeField] private Sword sword;
     
-    private Camera camera;
     private Animator animator;
     private EnemyController currentEnemy;
 
@@ -38,9 +21,10 @@ public class PlayerController : MonoBehaviour
 
     private float playerLookAtSpeed = 3f;
 
+    private bool canAttack = false;
+
     private void Awake()
     {
-        camera = Camera.main;
         animator = GetComponent<Animator>();
     }
 
@@ -50,7 +34,11 @@ public class PlayerController : MonoBehaviour
         Observer.Instance.OnNextEnemyPushed += SetCurrentTarget;
         Observer.Instance.OnCheckPointPassed += GoToNextCheckPoint;
         Observer.Instance.OnCheckPointPassed += ClearCurrentEnemy;
-        SwipeDetector.OnSwipe += Attack;
+        
+        Observer.Instance.OnEnemyStartsAttack += delegate { canAttack = true; };
+        Observer.Instance.OnEnemyDied += delegate { canAttack = false; };
+        
+        SwipeDetector.OnSwipe += TryAttack;
     }
 
     private void SetCurrentTarget(EnemyController enemy)
@@ -64,9 +52,9 @@ public class PlayerController : MonoBehaviour
         currentEnemy = null;
     }
 
-    private void Attack(SwipeData swipe)
+    private void TryAttack(SwipeData swipe)
     {
-        if (!currentEnemy)
+        if (!currentEnemy || !canAttack)
         {
             return;
         }
@@ -77,14 +65,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            ObjectPooler.Instance.SpawnObject("SuperAttack", transform.position);
-            animator.SetTrigger(AnimatorHashes.SuperAttack);
+            SuperAttack();
         }
 
-        EnableSlowMo();
-
-        sword.StartAttack();
         currentEnemy.SlowDown();
+        EnableSlowMo();
+        sword.StartAttack();
     }
 
     private void NormalAttack(SwipeData swipe)
@@ -105,6 +91,13 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
+    private void SuperAttack()
+    {
+        ObjectPooler.Instance.SpawnObject("SuperAttack", transform.position).transform.parent = transform;
+        animator.SetTrigger(AnimatorHashes.SuperAttack);
+    }
+
 
     private void EnableSlowMo()
     {
@@ -153,7 +146,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         AimToCurrentTarget();
-        UpdateCamera();
     }
 
     private void AimToCurrentTarget()
@@ -170,43 +162,43 @@ public class PlayerController : MonoBehaviour
                                              Time.deltaTime * playerLookAtSpeed);
     }
 
-    private void UpdateCamera()
-    {
-        if (currentEnemy)
-        {
-            FightCamUpdate();
-        }
-        else
-        {
-            NormalCamUpdate();
-        }
-    }
-
-    private void NormalCamUpdate()
-    {
-        camera.transform.position = Vector3.Lerp(camera.transform.position,
-                                                 cameraPosition.position,
-                                                 Time.deltaTime * cameraSettings.normalFollowSpeed);
-        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation,
-                                                    cameraPosition.rotation,
-                                                    Time.deltaTime * cameraSettings.normalRotationSpeed);
-    }
-
-    private void FightCamUpdate()
-    {
-        camera.transform.position = Vector3.Lerp(camera.transform.position,
-                                                 cameraPosition.position,
-                                                 Time.deltaTime * cameraSettings.fightFollowSpeed);
-
-        Vector3 targetDirection = currentEnemy.transform.position - camera.transform.position;
-        Quaternion fullLookRotation = Quaternion.LookRotation(targetDirection);
-        camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation,
-                                                    fullLookRotation,
-                                                    Time.deltaTime * cameraSettings.fightRotationSpeed);
-    }
-
     public void SetAttackType(AttackType attackType)
     {
         this.attackType = attackType;
+    }
+
+    public Action OnTakeDamage { get; set; }
+    public void TakeDamage()
+    {
+        if (!animator.GetBool(AnimatorHashes.Death))
+        {
+            sword.StopAttack();
+            OnTakeDamage?.Invoke();
+            DisableSlowMo();
+            PlayDeathAnimation();
+            SpawnBlood();
+        }
+    }
+
+    private static void DisableSlowMo()
+    {
+        SlowMoData slowMoData;
+        slowMoData.delay = 0;
+        slowMoData.duration = 0;
+        Observer.Instance.OnEnableSlowMo(slowMoData);
+    }
+
+    private void PlayDeathAnimation()
+    {
+        animator.applyRootMotion = true;
+        animator.SetFloat(AnimatorHashes.DeathType, Random.Range(0, 2));
+        animator.SetBool(AnimatorHashes.Death, true);
+    }
+
+    private void SpawnBlood()
+    {
+        ObjectPooler.Instance.SpawnObject("Blood", 
+                                          transform.position - transform.forward,
+                                          Quaternion.LookRotation(-transform.forward));
     }
 }

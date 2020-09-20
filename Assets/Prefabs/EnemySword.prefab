@@ -130,11 +130,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4932866191503849430}
   - component: {fileID: 4932866190867216852}
-  - component: {fileID: 4932866190867216850}
   - component: {fileID: 4932866191504582238}
   - component: {fileID: 4932866191505706386}
   m_Layer: 0
-  m_Name: PlayerSword
+  m_Name: EnemySword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,29 +180,6 @@ MonoBehaviour:
     - {fileID: 4517077461029344522}
     - {fileID: 7876731683692616472}
     - {fileID: 1286943235552112710}
---- !u!114 &4932866190867216850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4932866191503549452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c2c9828fec98747a1b0680f47bed80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseWith2D: 0
-  UseWithSRP: 1
-  SortingLayerName: 
-  SortingOrder: 0
-  PointStart: {fileID: 4932866189700627461}
-  PointEnd: {fileID: 4932866190009682594}
-  MaxFrame: 12
-  Granularity: 60
-  Fps: 60
-  MyColor: {r: 1, g: 1, b: 1, a: 1}
-  MyMaterial: {fileID: 2100000, guid: 75f756109f216ad409ff1a5ea7dd7b2c, type: 2}
 --- !u!33 &4932866191504582238
 MeshFilter:
   m_ObjectHideFlags: 0
