@@ -28258,6 +28258,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5421078375499560512, guid: 718252425d47cc64c95e6145aa5a1df0,
+        type: 3}
+      propertyPath: useVignette
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5421078375499560513, guid: 718252425d47cc64c95e6145aa5a1df0,
         type: 3}
       propertyPath: m_LocalPosition.x
