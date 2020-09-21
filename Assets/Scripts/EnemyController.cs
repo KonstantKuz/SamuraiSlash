@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void PlayAttackAnimation()
     {
         //animator.applyRootMotion = false;
-        animator.SetFloat(AnimatorHashes.AttackType, Random.Range(0, 3));
+        animator.SetFloat(AnimatorHashes.AttackType, Random.Range(0, 4));
         animator.SetBool(AnimatorHashes.Attack, true);
     }
 

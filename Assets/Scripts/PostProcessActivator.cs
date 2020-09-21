@@ -10,6 +10,7 @@ public class PostProcessActivator : MonoBehaviour
     private void OnEnable()
     {
         Observer.Instance.OnEnemyDied += ActivatePostProcess;
+        //Observer.Instance.OnCheckPointPassed += DisablePostProcess;
         Observer.Instance.OnWinLevel += DisablePostProcess;
     }
 
