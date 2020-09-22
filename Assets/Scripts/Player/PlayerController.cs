@@ -10,10 +10,9 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField] private SlowMoSettings slowMoSettings;
-    
-    [SerializeField] private Transform[] checkPoints;
     [SerializeField] private Sword sword;
-    
+    [SerializeField] private Transform[] checkPoints;
+
     private Animator animator;
     private EnemyController currentEnemy;
 
