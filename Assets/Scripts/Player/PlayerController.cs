@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             DisableSlowMo();
             PlayDeathAnimation();
             SpawnBlood();
+            Observer.Instance.CallOnLoseLevel();
         }
     }
 
