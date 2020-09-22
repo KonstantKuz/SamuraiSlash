@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FightCheckPoint : MonoBehaviour
+public class FightCheckPoint : MonoBehaviour, IFightCheckPoint
 {
+    [SerializeField] private Transform onPlayerEnterLookAt;
+
+    public Transform AimTargetForPlayer
+    {
+        get { return onPlayerEnterLookAt; }
+    }
+
     [Tooltip("задержка перед первым нападением на игрока")]
     [SerializeField] private float firstAttackDelay;
 
@@ -71,4 +78,9 @@ public class FightCheckPoint : MonoBehaviour
     {
         GetComponent<Collider>().enabled = false;
     }
+}
+
+public interface IFightCheckPoint
+{
+    Transform AimTargetForPlayer { get; }
 }

@@ -290,6 +290,10 @@
             <e p="SwipeLogger.cs" t="Include" />
           </e>
           <e p="Sword.cs" t="Include" />
+          <e p="Tutorial" t="Include">
+            <e p="SwipeAnimation.cs" t="Include" />
+            <e p="TutorialManager.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="EndPanelLevelText.cs" t="Include" />
             <e p="ScoreManager.cs" t="Include" />

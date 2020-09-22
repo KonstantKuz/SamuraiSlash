@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerSword
   - FightCheckPoint
+  - PathPoint
   layers:
   - Default
   - TransparentFX
