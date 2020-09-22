@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    [SerializeField] private LayerMask interactionLayers;
     [SerializeField] private RazorsSettings razorsSettings;
 
     private IDamageable parent;
@@ -40,7 +41,8 @@ public class Sword : MonoBehaviour
             razorsSettings.ray.direction = razor.up;
             
             if (Physics.SphereCast(razorsSettings.ray, razorsSettings.razorHelpSphereRadius, 
-                                   out razorsSettings.hit, razorsSettings.razorLength))
+                                   out razorsSettings.hit, razorsSettings.razorLength,
+                                   interactionLayers))
             {
                 IDamageable damageable; 
                 if (razorsSettings.hit.transform.TryGetComponent(out damageable) && damageable != parent)

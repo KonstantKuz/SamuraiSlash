@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 4169786698570638675}
   - component: {fileID: 702723906238815452}
   - component: {fileID: 702723906231484448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -880,12 +880,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6082a517bdd3c9946b34946ba13c6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finishDelay: 0.5
   slowMoSettings:
     startTimePercentage: 0.5
     duration: 0.03
+  sword: {fileID: 702723906371166643}
   checkPoints:
   - {fileID: 0}
-  sword: {fileID: 702723906371166643}
 --- !u!114 &4593767798129661378
 MonoBehaviour:
   m_ObjectHideFlags: 0
