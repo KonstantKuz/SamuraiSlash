@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/2BossFight_Cinematic.unity
-    guid: 44a5b2cf59ce369488d51fa979b40404
+    path: Assets/Scenes/Levels/Level001.unity
+    guid: 38919327889b3534f851c8bac048940e
   - enabled: 1
-    path: Assets/Scenes/3PostProcess.unity
-    guid: 970bea5e4a571f14581572fdefa9b194
+    path: Assets/Scenes/Levels/Level002.unity
+    guid: 7987cbb18779e4f478d68fb23de3cb24
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level003.unity
+    guid: 86e1c0c7cbffc5a4eaeebb043d0a4bf8
   m_configObjects: {}

@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     {
         Observer.Instance.OnEnemyStartsAttack += ActivateTutorial;
         Observer.Instance.OnEnemyDied += DeactivateTutorial;
+        Observer.Instance.OnLoseLevel += DeactivateTutorial;
     }
 
     private void ActivateTutorial()
