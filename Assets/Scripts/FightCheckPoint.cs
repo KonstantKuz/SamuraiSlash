@@ -45,6 +45,11 @@ public class FightCheckPoint : MonoBehaviour, IFightCheckPoint
         IEnumerator DelayedFirstAttack()
         {
             yield return new WaitForSeconds(firstAttackDelay);
+            while (pointEnemies[currentEnemyIndex].IsGoingToStartPoint)
+            {
+                yield return null;
+            }
+            
             PushNextEnemy();
             Observer.Instance.OnFightStarted();
         }

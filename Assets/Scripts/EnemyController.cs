@@ -20,6 +20,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     private PlayerController playerController;
 
     public Action OnTakeDamage { get; set; }
+    private bool isGoingToStartPoint;
+
+    public bool IsGoingToStartPoint
+    {
+        get { return isGoingToStartPoint; }
+    }
 
     private void Awake()
     {
@@ -30,19 +36,19 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void GoToStartPoint()
     {
+        isGoingToStartPoint = true;
         animator.SetFloat(AnimatorHashes.Motion, 1f);
-        
         currentAimTarget = startPoint;
         
         StartCoroutine(AimToPlayerAfterFinishStartPoint());
-
         IEnumerator AimToPlayerAfterFinishStartPoint()
         {
             while ((transform.position - currentAimTarget.position).magnitude > 0.5f)
             {
                 yield return null;
             }
-            
+
+            isGoingToStartPoint = false;
             animator.SetFloat(AnimatorHashes.Motion, 0f);
             currentAimTarget = playerController.transform;
         }
