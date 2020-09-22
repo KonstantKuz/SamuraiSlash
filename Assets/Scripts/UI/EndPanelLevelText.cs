@@ -18,6 +18,6 @@ public class EndPanelLevelText : MonoBehaviour
 
     private void SetLevelText(int currentLevel)
     {
-        levelText.SetText($"level {currentLevel.ToString()}");
+        levelText.SetText($"level {(currentLevel+1).ToString()}");
     }
 }
