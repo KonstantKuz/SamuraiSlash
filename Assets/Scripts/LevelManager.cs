@@ -35,6 +35,12 @@ public class LevelManager : Singleton<LevelManager>
             ? PlayerPrefs.GetInt(GameConstants.PrefsCurrentLevel)
             : 0;
 
+        if (SceneManager.GetActiveScene().buildIndex != currentLevel)
+        {
+            SceneManager.LoadScene(currentLevel);
+            return;
+        }
+        
         Observer.Instance.OnLevelManagerLoaded(currentLevel);
     }
 
