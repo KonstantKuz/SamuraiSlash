@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             Stop();
 
-            SetAimTarget(other.GetComponent<IFightCheckPoint>().AimTargetForPlayer);
+            SetAimTarget(other.GetComponent<IFightCheckPoint>().PlayerAimTarget);
             UpdateCheckPointIndex();
         }
 

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FightCheckPoint : MonoBehaviour, IFightCheckPoint
 {
-    [SerializeField] private Transform onPlayerEnterLookAt;
+    [SerializeField] private Transform playerAimTarget;
 
-    public Transform AimTargetForPlayer
+    public Transform PlayerAimTarget
     {
-        get { return onPlayerEnterLookAt; }
+        get { return playerAimTarget; }
     }
 
     [Tooltip("задержка перед первым нападением на игрока")]
@@ -82,5 +82,5 @@ public class FightCheckPoint : MonoBehaviour, IFightCheckPoint
 
 public interface IFightCheckPoint
 {
-    Transform AimTargetForPlayer { get; }
+    Transform PlayerAimTarget { get; }
 }

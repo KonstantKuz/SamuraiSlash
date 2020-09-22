@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class BossFightCheckPoint : MonoBehaviour, IFightCheckPoint
 {
-    [SerializeField] private Transform onPlayerEnterLookAt;
+    [SerializeField] private Transform playerAimTarget;
 
-    public Transform AimTargetForPlayer
+    public Transform PlayerAimTarget
     {
-        get { return onPlayerEnterLookAt; }
+        get { return playerAimTarget; }
     }
     
     [Tooltip("задержка перед первым нападением на игрока")]
