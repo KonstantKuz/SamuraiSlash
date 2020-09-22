@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/ScreenshotMaker/Screenshots.meta
+guid: dd726bdc743dca44888d2627b27267c2
 guid: e7599136ea41b3e479312caddddc6b30
 =======
-guid: 13b2d3cc0139d534fbf8c0c0d8ad8e0f
 >>>>>>> a08e078a685587f2ba2e6051eed9667b38f97f45:Assets/ScreenshotMaker/Screenshots/1242x2208.meta
-=======
-guid: e7599136ea41b3e479312caddddc6b30
->>>>>>> a08e078a685587f2ba2e6051eed9667b38f97f45
-folderAsset: yes
 DefaultImporter:
   externalObjects: {}
   userData: 

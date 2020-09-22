@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 7234285245545150338}
   - component: {fileID: 1909843608419876914}
   - component: {fileID: 7926891344830643848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,6 +716,7 @@ MonoBehaviour:
   attackRaycaster: {fileID: 8780219589081632901}
   attackRayLength: 2
   sword: {fileID: 2893517480254944024}
+  attackSlowMoDuration: 0.05
 --- !u!95 &1909843608419876914
 Animator:
   serializedVersion: 3

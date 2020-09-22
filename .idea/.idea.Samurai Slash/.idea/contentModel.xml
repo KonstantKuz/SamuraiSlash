@@ -321,6 +321,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AdjustSDKManager.cs" t="Include" />
+          <e p="AnalyticsEventsManager.cs" t="Include" />
           <e p="AnimatorHashes.cs" t="Include" />
           <e p="BossFightCheckPoint.cs" t="Include" />
           <e p="DebugTools.cs" t="Include" />

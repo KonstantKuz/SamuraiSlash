@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9ed469a212fce408d87b53b5f175d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 256
   razorsSettings:
     razorLength: 1
     razorHelpSphereRadius: 0.3
