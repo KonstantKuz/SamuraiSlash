@@ -20594,6 +20594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RegularTemplate
       objectReference: {fileID: 0}
+    - target: {fileID: 6267704866293646698, guid: 6136ded66c8204349a8827aec93de431,
+        type: 3}
+      propertyPath: levelNumberToSet
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6136ded66c8204349a8827aec93de431, type: 3}
 --- !u!1001 &1414705578

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17877084, g: 0.22384512, b: 0.3057478, a: 1}
+  m_IndirectSpecularColor: {r: 0.17877106, g: 0.22384533, b: 0.30574846, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20708,56 +20708,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RegularTemplate
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.1552744
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7358756
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.15873833
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.6396711
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 98.369
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124495167518420662, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6267704866293646698, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: levelNumberToSet
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6401380262588693060, guid: 6136ded66c8204349a8827aec93de431,
-        type: 3}
-      propertyPath: currentLevel
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6136ded66c8204349a8827aec93de431, type: 3}

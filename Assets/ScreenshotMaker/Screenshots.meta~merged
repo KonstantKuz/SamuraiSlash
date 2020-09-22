@@ -1,10 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: e7599136ea41b3e479312caddddc6b30
+folderAsset: yes
+=======
 <<<<<<< HEAD:Assets/Scenes/Levels/Level005.unity.meta
 guid: e1dbef212b514224e961e3a7c0605cfb
 =======
 guid: e7599136ea41b3e479312caddddc6b30
 folderAsset: yes
 >>>>>>> a08e078a685587f2ba2e6051eed9667b38f97f45:Assets/ScreenshotMaker/Screenshots.meta
+>>>>>>> a08e078a685587f2ba2e6051eed9667b38f97f45
 DefaultImporter:
   externalObjects: {}
   userData: 
