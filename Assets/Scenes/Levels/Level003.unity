@@ -25525,6 +25525,11 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 1614676222}
+    - target: {fileID: 7234285245545150338, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
+        type: 3}
+      propertyPath: attackSlowMoDuration
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0, type: 3}
 --- !u!1001 &1720929088
@@ -30972,6 +30977,11 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 798019780}
+    - target: {fileID: 7234285245545150338, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0,
+        type: 3}
+      propertyPath: attackSlowMoDuration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfb8955fbdfb23c40b36ca1bb9dd3fb0, type: 3}
 --- !u!1001 &2070979911
