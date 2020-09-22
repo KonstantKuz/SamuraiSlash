@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private Transform attackRaycaster;
     [SerializeField] private float attackRayLength;
     [SerializeField] private Sword sword;
+    [SerializeField] private float attackSlowMoDuration = 0.05f;
     
     private Animator animator;
     private CharacterController controller;
@@ -30,6 +31,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void GoToStartPoint()
     {
         animator.SetFloat(AnimatorHashes.Motion, 1f);
+        
         currentAimTarget = startPoint;
         
         StartCoroutine(AimToPlayerAfterFinishStartPoint());
@@ -104,8 +106,6 @@ public class EnemyController : MonoBehaviour, IDamageable
         PlayAttackAnimation();
         EnableSlowMo();
         sword.StartAttack();
-        //StartDelayedSwordActivation();
-        //StartDelayedPlayerKillTry();
         Observer.Instance.OnEnemyStartsAttack();
     }
 
@@ -120,36 +120,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         SlowMoData slowMoData = new SlowMoData();
         slowMoData.delay = GameConstants.SlowMoDelayOnEnemyAttack;
-        slowMoData.duration = GameConstants.SlowMoDurationOnEnemyAttack;
+        slowMoData.duration = attackSlowMoDuration;
         Observer.Instance.OnEnableSlowMo(slowMoData);
     }
-
-    // private void StartDelayedPlayerKillTry()
-    // {
-    //     StartCoroutine(DelayedPlayerKillTry());
-    //
-    //     IEnumerator DelayedPlayerKillTry()
-    //     {
-    //         yield return new WaitForEndOfFrame();
-    //         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * 0.8f);
-    //         if (!animator.GetBool(AnimatorHashes.Death))
-    //         {
-    //             playerController.TakeDamage();
-    //         }
-    //     }
-    // }
-
-    // private void StartDelayedSwordActivation()
-    // {
-    //     StartCoroutine(DelayedSwordActivation());
-    //     IEnumerator DelayedSwordActivation()
-    //     {
-    //         yield return new WaitForEndOfFrame();
-    //         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length * 0.3f);
-    //         //yield return new WaitForSecondsRealtime(1.5f);
-    //         sword.StartAttack();
-    //     }
-    // }
 
     public void SlowDown()
     {

@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Linq;
 using System.Security.AccessControl;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    [SerializeField] private float finishDelay = 0.5f;
     [SerializeField] private SlowMoSettings slowMoSettings;
-    
-    [SerializeField] private Transform[] checkPoints;
     [SerializeField] private Sword sword;
-    
+    [SerializeField] private Transform[] checkPoints;
+
     private Animator animator;
     private EnemyController currentEnemy;
 
@@ -44,7 +46,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void SetCurrentTarget(EnemyController enemy)
     {
         currentEnemy = enemy;
-        currentAimTarget = enemy.transform;
+        SetAimTarget(enemy.transform);
+    }
+
+    private void SetAimTarget(Transform target)
+    {
+        currentAimTarget = target;
     }
 
     private void ClearCurrentEnemy()
@@ -112,7 +119,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (other.CompareTag(GameConstants.TagFightCheckPoint))
         {
             Stop();
+
+            SetAimTarget(other.GetComponent<IFightCheckPoint>().PlayerAimTarget);
             UpdateCheckPointIndex();
+        }
+
+        if (other.CompareTag(GameConstants.TagPathPoint) && checkPoints.Contains(other.transform))
+        {
+            UpdateCheckPointIndex();
+            SetAimTarget(checkPoints[currentCheckPointIndex]);
         }
     }
 
@@ -133,13 +148,13 @@ public class PlayerController : MonoBehaviour, IDamageable
             StartCoroutine(DelayedFinish());
             IEnumerator DelayedFinish()
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(finishDelay);
                 Observer.Instance.CallOnWinLevel();
             }
             return;
         }
 
-        currentAimTarget = checkPoints[currentCheckPointIndex].transform;
+        SetAimTarget(checkPoints[currentCheckPointIndex]);
         animator.SetTrigger(AnimatorHashes.Run);
     }
 

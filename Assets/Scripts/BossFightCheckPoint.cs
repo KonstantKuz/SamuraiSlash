@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class BossFightCheckPoint : MonoBehaviour
+public class BossFightCheckPoint : MonoBehaviour, IFightCheckPoint
 {
+    [SerializeField] private Transform playerAimTarget;
+
+    public Transform PlayerAimTarget
+    {
+        get { return playerAimTarget; }
+    }
+    
     [Tooltip("задержка перед первым нападением на игрока")]
     [SerializeField] private float firstAttackDelay;
     
@@ -30,11 +37,11 @@ public class BossFightCheckPoint : MonoBehaviour
             }
             
             DisableCollider();
-            StartDelayedAttack();
+            StartDelayedFirstAttack();
         }
     }
 
-    private void StartDelayedAttack()
+    private void StartDelayedFirstAttack()
     {
         StartCoroutine(DelayedAttack());
         IEnumerator DelayedAttack()

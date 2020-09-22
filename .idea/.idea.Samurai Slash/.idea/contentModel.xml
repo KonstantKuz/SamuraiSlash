@@ -7,6 +7,42 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Adjust" t="Include">
+          <e p="3rd Party" t="Include">
+            <e p="SimpleJSON.cs" t="Include" />
+          </e>
+          <e p="Android" t="Include">
+            <e p="AdjustAndroid.cs" t="Include" />
+            <e p="AdjustAndroidManifest.xml" t="Include" />
+          </e>
+          <e p="Editor" t="Include">
+            <e p="AdjustEditor.cs" t="Include" />
+          </e>
+          <e p="ExampleGUI" t="Include">
+            <e p="ExampleGUI.cs" t="Include" />
+          </e>
+          <e p="iOS" t="Include">
+            <e p="AdjustiOS.cs" t="Include" />
+          </e>
+          <e p="Unity" t="Include">
+            <e p="Adjust.cs" t="Include" />
+            <e p="AdjustAppStoreSubscription.cs" t="Include" />
+            <e p="AdjustAttribution.cs" t="Include" />
+            <e p="AdjustConfig.cs" t="Include" />
+            <e p="AdjustEnvironment.cs" t="Include" />
+            <e p="AdjustEvent.cs" t="Include" />
+            <e p="AdjustEventFailure.cs" t="Include" />
+            <e p="AdjustEventSuccess.cs" t="Include" />
+            <e p="AdjustLogLevel.cs" t="Include" />
+            <e p="AdjustPlayStoreSubscription.cs" t="Include" />
+            <e p="AdjustSessionFailure.cs" t="Include" />
+            <e p="AdjustSessionSuccess.cs" t="Include" />
+            <e p="AdjustUtils.cs" t="Include" />
+          </e>
+          <e p="Windows" t="Include">
+            <e p="AdjustWindows.cs" t="Include" />
+          </e>
+        </e>
         <e p="Content" t="Include">
           <e p="Dreamteck" t="Include">
             <e p="Splines" t="Include">
@@ -210,6 +246,31 @@
             </e>
           </e>
         </e>
+        <e p="FacebookSDK" t="Include">
+          <e p="Examples" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ConsoleBase.cs" t="Include" />
+              <e p="LogView.cs" t="Include" />
+              <e p="MenuBase.cs" t="Include" />
+              <e p="SubMenus" t="Include">
+                <e p="AccessTokenMenu.cs" t="Include" />
+                <e p="AppEvents.cs" t="Include" />
+                <e p="AppLinks.cs" t="Include" />
+                <e p="AppRequests.cs" t="Include" />
+                <e p="DialogShare.cs" t="Include" />
+                <e p="GraphRequest.cs" t="Include" />
+                <e p="MainMenu.cs" t="Include" />
+                <e p="Pay.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="link.xml" t="Include" />
+          <e p="Plugins" t="Include">
+            <e p="Editor" t="Include">
+              <e p="Dependencies.xml" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Other" t="Include">
           <e p="Demigiant" t="Include">
             <e p="DOTween" t="Include">
@@ -253,14 +314,23 @@
             </e>
           </e>
         </e>
+        <e p="PlayServicesResolver" t="Include">
+          <e p="Editor" t="Include">
+            <e p="play-services-resolver_v1.2.135.0.txt" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
+          <e p="AdjustSDKManager.cs" t="Include" />
           <e p="AnimatorHashes.cs" t="Include" />
           <e p="BossFightCheckPoint.cs" t="Include" />
+          <e p="DebugTools.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="FightCheckPointEditor.cs" t="Include" />
+            <e p="PlayerEditor.cs" t="Include" />
           </e>
           <e p="EnemyController.cs" t="Include" />
           <e p="EventTriggers.cs" t="Include" />
+          <e p="FacebookSDKManager.cs" t="Include" />
           <e p="FightCheckPoint.cs" t="Include" />
           <e p="GameConstants.cs" t="Include" />
           <e p="GameStarter.cs" t="Include" />
@@ -290,6 +360,10 @@
             <e p="SwipeLogger.cs" t="Include" />
           </e>
           <e p="Sword.cs" t="Include" />
+          <e p="Tutorial" t="Include">
+            <e p="SwipeAnimation.cs" t="Include" />
+            <e p="TutorialManager.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="EndPanelLevelText.cs" t="Include" />
             <e p="ScoreManager.cs" t="Include" />

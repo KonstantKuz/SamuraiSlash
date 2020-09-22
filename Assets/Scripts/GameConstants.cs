@@ -9,7 +9,8 @@ public class GameConstants : MonoBehaviour
     public const string TagPlayer = "Player";
     public const string TagPlayerSword = "PlayerSword";
     public const string TagFightCheckPoint = "FightCheckPoint";
-
+    public const string TagPathPoint = "PathPoint";
+    
     public const float SlowMoDelayOnEnemyAttack = 0.1f;
     public const float SlowMoDurationOnEnemyAttack = 0.05f;
 }
