@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    [SerializeField] private float finishDelay = 0.5f;
     [SerializeField] private SlowMoSettings slowMoSettings;
     [SerializeField] private Sword sword;
     [SerializeField] private Transform[] checkPoints;
@@ -147,7 +148,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             StartCoroutine(DelayedFinish());
             IEnumerator DelayedFinish()
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(finishDelay);
                 Observer.Instance.CallOnWinLevel();
             }
             return;
